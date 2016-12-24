@@ -11,25 +11,48 @@ dl, dd, ol, ul, figure {
   padding: 0; }
 
 .intro {
+  animation: pulseTXT 8s infinite;
+  animation-direction: alternate;
+  color: #e34a4a;
   font-size: 2rem;
   line-height: 1;
   margin-bottom: 4rem; }
   @media screen and (min-width: 800px) {
     .intro {
       font-size: 3rem;
-      color: red;
       line-height: 1.1; } }
 
-.intro > span {
-  color: #d3d; }
+#particles-js {
+  background: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2; }
 
 /**
  * Basic styling
  */
+@keyframes pulseBG {
+  0% {
+    background-color: #0fa0ff; }
+  100% {
+    background-color: #faff7e; } }
+
+@keyframes pulseTXT {
+  0% {
+    color: #faff7e; }
+  50% {
+    color: #0a1bff; }
+  100% {
+    color: #0fa0ff; } }
+
 body {
   font: 400 16px/1.2 "Courier", monospace;
   color: #111;
-  background-color: #DDDDDD;
+  animation: pulseBG 10s infinite;
+  animation-direction: alternate;
   -webkit-text-size-adjust: 100%;
   -webkit-font-feature-ngs: "kern" 1;
   -o-font-feature-settings: "kern" 1;
@@ -88,6 +111,8 @@ h1, h2, h3, h4, h5, h6 {
  * Links
  */
 a {
+  animation: pulseTXT 8s infinite;
+  animation-direction: alternate;
   color: #2a7ae2;
   text-decoration: none; }
   a:visited {

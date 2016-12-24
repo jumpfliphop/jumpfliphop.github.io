@@ -8,33 +8,70 @@ dl, dd, ol, ul, figure {
     padding: 0;
 }
 
-
 .intro {
+
+    animation: pulseTXT 8s infinite;
+    animation-direction: alternate;
+	  color: #e34a4a;
     font-size: 2rem;
     line-height: 1;
     margin-bottom: 4rem;
-
     @include media-query($on-laptop) {
 	font-size: 3rem;
-	color: red;
 	line-height: 1.1;
     }
+}
+
+#particles-js {
+  background: none;
+  position: fixed;
+  top:0;
+  bottom:0;
+  width: 100%;
+  height: 100%;
+  z-index:-2;
 }
 
 $pulsate: #d3d;
 
 .intro > span {
-    color: $pulsate;
 }
-
 
 /**
  * Basic styling
  */
+
+
+ @keyframes pulseBG {
+   0% {
+     background-color: rgb(15, 160, 255);
+   }
+   100% {
+     background-color: #faff7e;
+   }
+ }
+
+ @keyframes pulseTXT {
+   0% {
+     color: #faff7e;
+   }
+
+   50% {
+    color: #0a1bff;
+   }
+
+   100% {
+     color: rgb(15, 160, 255);
+   }
+ }
+
 body {
     font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
     color: $text-color;
-    background-color: $background-color;
+    //background: transparent;
+
+    animation: pulseBG 10s infinite;
+    animation-direction: alternate;
     -webkit-text-size-adjust: 100%;
     -webkit-font-feature-ngs: "kern" 1;
     -moz-font-feature-settings: "kern" 1;
@@ -117,6 +154,10 @@ h1, h2, h3, h4, h5, h6 {
  * Links
  */
 a {
+
+      animation: pulseTXT 8s infinite;
+      animation-direction: alternate;
+
     color: $brand-color;
     text-decoration: none;
 

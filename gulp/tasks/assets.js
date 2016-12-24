@@ -22,69 +22,69 @@ const when = require('gulp-if');
 // 'gulp scripts --prod' -- creates a index.js file from your JavaScript files,
 // minifies, gzips and cache busts it. Does not create a Sourcemap
 gulp.task('scripts', () =>
-  // NOTE: The order here is important since it's concatenated in order from
-  // top to bottom, so you want vendor scripts etc on top
-  gulp.src([
-    'src/assets/javascript/vendor.js',
-    'src/assets/javascript/main.js'
-  ])
-    .pipe(newer('.tmp/assets/javascript/index.js', {dest: '.tmp/assets/javascript', ext: '.js'}))
-    .pipe(when(!argv.prod, sourcemaps.init()))
-    .pipe(babel({
-      presets: ['es2015']
-    }))
-    .pipe(concat('index.js'))
-    .pipe(size({
-      showFiles: true
-    }))
-    .pipe(when(argv.prod, rename({suffix: '.min'})))
-    .pipe(when(argv.prod, when('*.js', uglify({preserveComments: 'some'}))))
-    .pipe(when(argv.prod, size({
-      showFiles: true
-    })))
-    .pipe(when(argv.prod, rev()))
-    .pipe(when(!argv.prod, sourcemaps.write('.')))
-    .pipe(when(argv.prod, gulp.dest('.tmp/assets/javascript')))
-    .pipe(when(argv.prod, when('*.js', gzip({append: true}))))
-    .pipe(when(argv.prod, size({
-      gzip: true,
-      showFiles: true
-    })))
-    .pipe(gulp.dest('.tmp/assets/javascript'))
-);
+	  // NOTE: The order here is important since it's concatenated in order from
+	  // top to bottom, so you want vendor scripts etc on top
+	  gulp.src([
+	    'src/assets/javascript/vendor.js',
+	    'src/assets/javascript/main.js'
+	  ])
+	  .pipe(newer('.tmp/assets/javascript/index.js', {dest: '.tmp/assets/javascript', ext: '.js'}))
+	  .pipe(when(!argv.prod, sourcemaps.init()))
+	  .pipe(babel({
+	    presets: ['es2015']
+	  }))
+	  .pipe(concat('index.js'))
+	  .pipe(size({
+	    showFiles: true
+	  }))
+	  .pipe(when(argv.prod, rename({suffix: '.min'})))
+	  .pipe(when(argv.prod, when('*.js', uglify({preserveComments: 'some'}))))
+	  .pipe(when(argv.prod, size({
+	    showFiles: true
+	  })))
+	  .pipe(when(argv.prod, rev()))
+	  .pipe(when(!argv.prod, sourcemaps.write('.')))
+	  .pipe(when(argv.prod, gulp.dest('.tmp/assets/javascript')))
+	  .pipe(when(argv.prod, when('*.js', gzip({append: true}))))
+	  .pipe(when(argv.prod, size({
+	    gzip: true,
+	    showFiles: true
+	  })))
+	  .pipe(gulp.dest('.tmp/assets/javascript'))
+	 );
 
 // 'gulp styles' -- creates a CSS file from your SASS, adds prefixes and
 // creates a Sourcemap
 // 'gulp styles --prod' -- creates a CSS file from your SASS, adds prefixes and
 // then minwhenies, gzips and cache busts it. Does not create a Sourcemap
 gulp.task('styles', () =>
-  gulp.src('src/assets/scss/style.scss')
-    .pipe(when(!argv.prod, sourcemaps.init()))
-    .pipe(sass({
-      precision: 10
-    }).on('error', sass.logError))
-    .pipe(postcss([
-      autoprefixer({browsers: 'last 1 version'})
-    ]))
-    .pipe(size({
-      showFiles: true
-    }))
-    .pipe(when(argv.prod, rename({suffix: '.min'})))
-    .pipe(when(argv.prod, when('*.css', cssnano({autoprefixer: false}))))
-    .pipe(when(argv.prod, size({
-      showFiles: true
-    })))
-    .pipe(when(argv.prod, rev()))
-    .pipe(when(!argv.prod, sourcemaps.write('.')))
-    .pipe(when(argv.prod, gulp.dest('.tmp/assets/stylesheets')))
-    .pipe(when(argv.prod, when('*.css', gzip({append: true}))))
-    .pipe(when(argv.prod, size({
-      gzip: true,
-      showFiles: true
-    })))
-    .pipe(gulp.dest('.tmp/assets/stylesheets'))
-    .pipe(when(!argv.prod, browserSync.stream()))
-);
+	  gulp.src('src/assets/scss/style.scss')
+	  .pipe(when(!argv.prod, sourcemaps.init()))
+	  .pipe(sass({
+	    precision: 10
+	  }).on('error', sass.logError))
+	  .pipe(postcss([
+	    autoprefixer({browsers: 'last 1 version'})
+	  ]))
+	  .pipe(size({
+	    showFiles: true
+	  }))
+	  .pipe(when(argv.prod, rename({suffix: '.min'})))
+	  .pipe(when(argv.prod, when('*.css', cssnano({autoprefixer: false}))))
+	  .pipe(when(argv.prod, size({
+	    showFiles: true
+	  })))
+	  .pipe(when(argv.prod, rev()))
+	  .pipe(when(!argv.prod, sourcemaps.write('.')))
+	  .pipe(when(argv.prod, gulp.dest('.tmp/assets/stylesheets')))
+	  .pipe(when(argv.prod, when('*.css', gzip({append: true}))))
+	  .pipe(when(argv.prod, size({
+	    gzip: true,
+	    showFiles: true
+	  })))
+	  .pipe(gulp.dest('.tmp/assets/stylesheets'))
+	  .pipe(when(!argv.prod, browserSync.stream()))
+	 );
 
 // Function to properly reload your browser
 function reload(done) {

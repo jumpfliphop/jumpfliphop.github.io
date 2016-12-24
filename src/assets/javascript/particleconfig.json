@@ -1,10 +1,4 @@
-'use strict';
-
-console.log('Hello world!');
-"use strict";
-
-/* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
-particlesJS('particles-js', {
+{
   "particles": {
     "number": {
       "value": 14,
@@ -113,5 +107,4 @@ particlesJS('particles-js', {
     }
   },
   "retina_detect": true
-});
-//# sourceMappingURL=index.js.map
+}
